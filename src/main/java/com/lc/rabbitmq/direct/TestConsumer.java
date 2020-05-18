@@ -17,6 +17,7 @@ public class TestConsumer {
         ConnectionFactory factory = new ConnectionFactory();
         //设置RabbitMQ地址
         factory.setHost("localhost");
+
         //创建一个新的连接
         Connection connection = factory.newConnection();
         //创建一个通道
@@ -24,6 +25,7 @@ public class TestConsumer {
         //声明要关注的队列
         channel.queueDeclare(QUEUE_NAME, false, false, true, null);
         System.out.println(name +" 等待接受消息");
+
         //DefaultConsumer类实现了Consumer接口，通过传入一个频道，
         // 告诉服务器我们需要那个频道的消息，如果频道中有消息，就会执行回调函数handleDelivery
         Consumer consumer = new DefaultConsumer(channel) {

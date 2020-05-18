@@ -14,6 +14,7 @@ public class TestProducer {
         ConnectionFactory factory = new ConnectionFactory();
         //设置RabbitMQ相关信息
         factory.setHost("localhost");
+
         //创建一个新的连接
         Connection connection = factory.newConnection();
         //创建一个通道

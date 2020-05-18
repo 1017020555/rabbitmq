@@ -14,11 +14,13 @@ public class TestProducter {
         ConnectionFactory factory = new ConnectionFactory();
         //设置RabbitMQ相关信息
         factory.setHost("localhost");
+
         //创建一个新的连接
         Connection connection = factory.newConnection();
         //创建一个通道
         Channel channel = connection.createChannel();
 
+//        交换机名称；交换机类型
         channel.exchangeDeclare(EXCHANGE_NAME, "topic");
 
         String[] routing_keys = new String[] { "usa.news", "usa.weather",
@@ -32,7 +34,6 @@ public class TestProducter {
             channel.basicPublish(EXCHANGE_NAME, routingKey, null, message
                     .getBytes());
             System.out.printf("发送消息到路由：%s, 内容是: %s%n ", routingKey,message);
-
         }
 
         //关闭通道和连接
